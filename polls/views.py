@@ -1,3 +1,56 @@
+from django.shortcuts import render_to_response, redirect
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.views.decorators.csrf import csrf_protect
 from django.shortcuts import render
 
-# Create your views here.
+def login_view(request):
+    return render(request, 'login.html', {})
+
+def signup_view(request):
+    return render(request, 'sign_up.html', {})
+
+def logout_view(request):
+    logout(request)
+    return redirect('/')
+
+@login_required(login_url='/login/')
+def profile_view(request):
+    return render(request, 'profile.html', {"first_name":"World!"})
+
+def auth_and_login(request, onsuccess='/profile/', onfail='/login/'):
+    user = authenticate(username=request.POST['email'], password=request.POST['password'])
+    if user is not None:
+        login(request, user)
+        return redirect(onsuccess)
+    else:
+        return redirect(onfail)
+
+def create_user(username, email, password, first_name):
+    user = User(username=username, email=email, first_name=first_name)
+    user.set_password(password)
+    user.save()
+    return user
+
+def user_exists(username):
+    user_count = User.objects.filter(username=username).count()
+    if user_count == 0:
+        return False
+    return True
+
+def sign_up_in(request):
+    post = request.POST
+    if not user_exists(post['email']): 
+        user = create_user(username=post['email'], email=post['email'], password=post['password'], first_name=post['first_name'])
+    	return auth_and_login(request)
+    else:
+    	return redirect("/login/")
+
+
+def main(request):
+	return render(request, 'main.html')
+
+@login_required(login_url='/login/')
+def secured(request):
+    return render(request, 'secure.html')
