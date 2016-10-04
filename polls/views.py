@@ -6,10 +6,11 @@ from django.views.decorators.csrf import csrf_protect
 from django.shortcuts import render
 
 def login_view(request):
-    return render(request, 'login.html', {})
+	return render(request, 'index-unreg.html', {})
+    # return render(request, 'login.html', {})
 
 def signup_view(request):
-    return render(request, 'sign_up.html', {})
+    return render(request, 'index-reg.html', {})
 
 def logout_view(request):
     logout(request)
@@ -17,7 +18,8 @@ def logout_view(request):
 
 @login_required(login_url='/login/')
 def profile_view(request):
-    return render(request, 'profile.html', {"first_name":"World!"})
+
+    return render(request, 'profile.html', {"first_name":request.user.first_name})
 
 def auth_and_login(request, onsuccess='/profile/', onfail='/login/'):
     user = authenticate(username=request.POST['email'], password=request.POST['password'])
