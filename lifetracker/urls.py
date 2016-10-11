@@ -26,4 +26,7 @@ urlpatterns = [
    	url(r'^signup/', polls_views.sign_up_in),
    	url(r'^profile/', polls_views.profile_view),
    	url(r'^$',       polls_views.main),
+    # test
+    url(r'^test/$',       polls_views.test),
+    # end test
 ]

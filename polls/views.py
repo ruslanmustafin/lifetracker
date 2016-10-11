@@ -53,6 +53,9 @@ def sign_up_in(request):
 def main(request):
 	return render(request, 'main.html')
 
+def test(request):
+	return render(request, 'test.html')
+
 @login_required(login_url='/login/')
 def secured(request):
     return render(request, 'secure.html')
