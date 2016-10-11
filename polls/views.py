@@ -5,21 +5,25 @@ from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_protect
 from django.shortcuts import render
 
+
 def login_view(request):
-	return render(request, 'index-unreg.html', {})
+    return render(request, 'index-unreg.html', {})
     # return render(request, 'login.html', {})
+
 
 def signup_view(request):
     return render(request, 'index-reg.html', {})
+
 
 def logout_view(request):
     logout(request)
     return redirect('/')
 
+
 @login_required(login_url='/login/')
 def profile_view(request):
+    return render(request, 'profile.html', {"first_name": request.user.first_name})
 
-    return render(request, 'profile.html', {"first_name":request.user.first_name})
 
 def auth_and_login(request, onsuccess='/profile/', onfail='/login/'):
     user = authenticate(username=request.POST['email'], password=request.POST['password'])
@@ -29,11 +33,13 @@ def auth_and_login(request, onsuccess='/profile/', onfail='/login/'):
     else:
         return redirect(onfail)
 
+
 def create_user(username, email, password, first_name):
     user = User(username=username, email=email, first_name=first_name)
     user.set_password(password)
     user.save()
     return user
+
 
 def user_exists(username):
     user_count = User.objects.filter(username=username).count()
@@ -41,18 +47,25 @@ def user_exists(username):
         return False
     return True
 
+
 def sign_up_in(request):
     post = request.POST
-    if not user_exists(post['email']): 
-        user = create_user(username=post['email'], email=post['email'], password=post['password'], first_name=post['first_name'])
-    	return auth_and_login(request)
+    if not user_exists(post['email']):
+        user = create_user(username=post['email'], email=post['email'], password=post['password'],
+                           first_name=post['first_name'])
+        return auth_and_login(request)
     else:
-    	return redirect("/login/")
+        return redirect("/login/")
 
 
 def main(request):
-	return render(request, 'main.html')
+    return render(request, 'main.html')
+
 
 @login_required(login_url='/login/')
 def secured(request):
     return render(request, 'secure.html')
+
+
+def test_graph(request):
+    return render(request, 'test.html')
