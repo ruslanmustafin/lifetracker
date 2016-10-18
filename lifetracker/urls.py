@@ -25,6 +25,7 @@ from rest_api import views as rest_views
 router = routers.DefaultRouter()
 router.register(r'users', rest_views.UserViewSet)
 router.register(r'groups', rest_views.GroupViewSet)
+router.register(r'weight', rest_views.WeightViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),

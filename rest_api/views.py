@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
-from rest_api.serializers import UserSerializer, GroupSerializer
+from rest_api.serializers import UserSerializer, GroupSerializer, WeightSerializer
+from polls.models import Weight
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -17,3 +18,7 @@ class GroupViewSet(viewsets.ModelViewSet):
     """
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
+
+class WeightViewSet(viewsets.ModelViewSet):
+	queryset = Weight.objects.all()
+	serializer_class = WeightSerializer
