@@ -17,3 +17,7 @@ class GroupViewSet(viewsets.ModelViewSet):
     """
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
+
+class WeightViewSet(viewsets.ModelViewSet):
+	queryset = Weight.objects.all()
+	serializer_class = WeightSerializer
