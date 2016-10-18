@@ -109,3 +109,14 @@ class UserMealLink(models.Model):
     class Meta:
         managed = False
         db_table = 'USER_MEAL_LINK'
+
+
+class Weight(models.Model):
+    weight_id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(User, models.DO_NOTHING, db_column='user')
+    weight_date_time = models.DateTimeField()
+    value = models.FloatField()
+
+    class Meta:
+        managed = False
+        db_table = 'WEIGHT'
