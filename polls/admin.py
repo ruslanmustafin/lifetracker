@@ -3,7 +3,7 @@ from django.contrib import admin
 # these lines added:
 
 from django.contrib import admin
-from .models import Food, Entry
+from .models_old import Food, Entry
 
 
 class EntryInline(admin.TabularInline):
