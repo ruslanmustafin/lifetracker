@@ -44,6 +44,14 @@ class Meal(models.Model):
     fat = models.IntegerField(blank=True, null=True)
     carbs = models.IntegerField(blank=True, null=True)
 
+    @staticmethod
+    def get_type_name(type_number):
+        meal_type_dict = {0:'food', 1:'beverage'}
+        if meal_type_dict.has_key(type_number):
+            return meal_type_dict[type_number]
+        else:
+            return 'unknown'
+
     class Meta:
         managed = False
         db_table = 'MEAL'
