@@ -1,8 +1,7 @@
-from django.shortcuts import render_to_response, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.views.decorators.csrf import csrf_protect
+from django.shortcuts import redirect
 from django.shortcuts import render
 
 
@@ -63,7 +62,8 @@ def main(request):
 
 
 def test(request):
-	return render(request, 'test.html')
+    return render(request, 'test.html')
+
 
 @login_required(login_url='/login/')
 def secured(request):
@@ -72,3 +72,19 @@ def secured(request):
 
 def test_graph(request):
     return render(request, 'test.html')
+
+
+def photos(request):
+    return render(request, 'photos.html')
+
+
+def sport(request):
+    return render(request, 'sport.html')
+
+
+def weight(request):
+    return render(request, 'weight.html')
+
+
+def meal(request):
+    return render(request, 'meal.html')

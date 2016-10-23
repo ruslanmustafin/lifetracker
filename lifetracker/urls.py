@@ -38,5 +38,9 @@ urlpatterns = [
     url(r'^$', polls_views.main),
     url(r'^test_graph/', polls_views.test_graph),
     url(r'^api/', include(router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^photos', polls_views.photos, name='photos'),
+    url(r'^sport', polls_views.sport, name='sport'),
+    url(r'^weight', polls_views.weight, name='weight'),
+    url(r'^meal', polls_views.meal, name='meal'),
 ]
