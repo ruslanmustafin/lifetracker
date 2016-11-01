@@ -59,7 +59,7 @@ def sign_up_in(request):
 
 
 def main(request):
-    return render(request, 'main.html')
+    return render(request, 'index.html')
 
 
 def test(request):
