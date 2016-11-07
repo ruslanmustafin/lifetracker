@@ -58,12 +58,17 @@ def sign_up_in(request):
         return redirect("/login/")
 
 
+def weight(request):
+    return render(request, 'weight/detail.html', {})
+
+
 def main(request):
     return render(request, 'index.html')
 
 
 def test(request):
-	return render(request, 'test.html')
+    return render(request, 'test.html')
+
 
 @login_required(login_url='/login/')
 def secured(request):
