@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Weight details</title>
+    <script>
+        var chartData = [ {{ weightsString }} ]
+    </script>
 </head>
 <body>
 <ul>
-  {% for weight in weights %}
-    <li>{{ weight.value }}</li>
-  {% endfor %}
+{#  {% for weight in weights %}#}
+{#    <li>{{ weight.value }}</li>#}
+{#  {% endfor %}#}
 </ul>
 </body>
 </html>

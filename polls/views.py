@@ -74,8 +74,14 @@ def weight(request):
     # messages.success(request, 'Tender created')
     # return redirect('tenders:tenders')
     #
+    weightsString = ''
+    weights = Weight.objects.filter(user=request.user.id)
+    for weight in weights:
+        weightsString +=  str(weight.value) + ','
+
     return render(request, 'weight/detail.html',
-                              {'weights': Weight.objects.filter(user=request.user.id)})
+                              {'weights': weights,
+                               'weightsString': weightsString[:-1]})
 
 
 def main(request):
