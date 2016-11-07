@@ -6,6 +6,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.shortcuts import render
 
 from models import Weight
+from models import Meal
 
 
 def login_view(request):
@@ -82,6 +83,24 @@ def weight(request):
     return render(request, 'weight/detail.html',
                               {'weights': weights,
                                'weightsString': weightsString[:-1]})
+
+
+def nutrition(request):
+    # print Weight.objects.filter(user=request.user.id)
+    # user_id = request.user.id
+    #
+    # current_weight = Weight.objects.get(user=user_id)
+    #
+    # print current_weight
+    # tender = form.save(commit=False)
+    # tender.owner_id_id = request.user.id
+    # print(request.user.id)
+    # tender.save()
+    # messages.success(request, 'Tender created')
+    # return redirect('tenders:tenders')
+    #
+    return render(request, 'nutrition/detail.html',
+                              {'nutrition_s': Meal.objects.filter(user=request.user.id)})
 
 
 def main(request):
