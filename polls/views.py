@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_protect
 from django.shortcuts import render
 
+from models import Weight
+
 
 def login_view(request):
     return render(request, 'index-unreg.html', {})
@@ -59,7 +61,21 @@ def sign_up_in(request):
 
 
 def weight(request):
-    return render(request, 'weight/detail.html', {})
+    # print Weight.objects.filter(user=request.user.id)
+    # user_id = request.user.id
+    #
+    # current_weight = Weight.objects.get(user=user_id)
+    #
+    # print current_weight
+    # tender = form.save(commit=False)
+    # tender.owner_id_id = request.user.id
+    # print(request.user.id)
+    # tender.save()
+    # messages.success(request, 'Tender created')
+    # return redirect('tenders:tenders')
+    #
+    return render(request, 'weight/detail.html',
+                              {'weights': Weight.objects.filter(user=request.user.id)})
 
 
 def main(request):

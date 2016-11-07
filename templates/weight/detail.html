@@ -5,6 +5,10 @@
     <title>Weight details</title>
 </head>
 <body>
-XXX
+<ul>
+  {% for weight in weights %}
+    <li>{{ weight.value }}</li>
+  {% endfor %}
+</ul>
 </body>
 </html>
