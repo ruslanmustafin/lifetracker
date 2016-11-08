@@ -7,10 +7,10 @@
 <body>
 <ul>
   {% for nutrition in nutrition_s %}
-      <li>{{ nutrition.calories }}</li>
-      <li>{{ nutrition.protein }}</li>
-      <li>{{ nutrition.fat }}</li>
-      <li>{{ nutrition.carbs }}</li>
+      <li>{{ nutrition.meal.calories }}</li>
+      <li>{{ nutrition.meal.protein }}</li>
+      <li>{{ nutrition.meal.fat }}</li>
+      <li>{{ nutrition.meal.carbs }}</li>
   {% endfor %}
 
 </ul>

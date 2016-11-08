@@ -6,7 +6,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.shortcuts import render
 
 from models import Weight
-from models import Meal
+from models import UserMealLink
 
 
 def login_view(request):
@@ -86,8 +86,9 @@ def weight(request):
 
 
 def nutrition(request):
+    print UserMealLink.objects.filter(user=request.user.id).count()
     return render(request, 'nutrition/detail.html',
-                               {'nutrition_s': Meal.objects.filter()})
+                               {'nutrition_s': UserMealLink.objects.filter(user=request.user.id)})
 
 
 def main(request):

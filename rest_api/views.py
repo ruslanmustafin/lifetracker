@@ -5,6 +5,7 @@ from polls.models import Weight
 from rest_framework import generics
 from django.utils.dateformat import format
 
+
 class UserViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
@@ -20,9 +21,10 @@ class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
 
+
 class WeightViewSet(viewsets.ModelViewSet):
-	queryset = Weight.objects.all()
-	serializer_class = WeightSerializer
+    queryset = Weight.objects.all()
+    serializer_class = WeightSerializer
 
 
 # class WeightDateFilter(django_filters.FilterSet):
@@ -53,11 +55,9 @@ class WeightSelfViewSet(viewsets.ModelViewSet):
 
         if date_to:
             date_to_unix = format(date_from, 'U')
-            queryset = filter_date(queryset, date_to_unix, False)        
-
+            queryset = filter_date(queryset, date_to_unix, False)
 
         return queryset
-
 
     def filter_date(queryset, date, greater=True):
         filtered_queryset = []
@@ -67,6 +67,3 @@ class WeightSelfViewSet(viewsets.ModelViewSet):
                 filtered_queryset.append(obj)
             elif not greater and unix_time < date:
                 filtered_queryset.append(obj)
-
-
-
