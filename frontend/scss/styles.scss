@@ -1,0 +1,8 @@
+.full-width-chart {
+  margin: 0 auto;
+  width: 80%;
+  > canvas {
+    height: 400px;
+    width: 400px;
+  }
+}
