@@ -1,11 +1,13 @@
-from django.shortcuts import render_to_response, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.views.decorators.csrf import csrf_protect
+from django.shortcuts import redirect
 from django.shortcuts import render
 
+from models import UserMealLink
 from models import Weight
+from models import UserExerciseLink
+from models import Exercise
 
 
 def login_view(request):
@@ -61,27 +63,20 @@ def sign_up_in(request):
 
 
 def weight(request):
-    # print Weight.objects.filter(user=request.user.id)
-    # user_id = request.user.id
-    #
-    # current_weight = Weight.objects.get(user=user_id)
-    #
-    # print current_weight
-    # tender = form.save(commit=False)
-    # tender.owner_id_id = request.user.id
-    # print(request.user.id)
-    # tender.save()
-    # messages.success(request, 'Tender created')
-    # return redirect('tenders:tenders')
-    #
-    weightsString = ''
+    weights_string = ''
     weights = Weight.objects.filter(user=request.user.id).order_by('weight_date_time')
     for weight in weights:
-        weightsString += '[' + str(weight.weight_date_time.date()) + ',' + str(weight.value) + ']' + ','
+        weights_string += '["' + str(weight.weight_date_time.date()) + '", ' + str(weight.value) + ']' + ', '
 
     return render(request, 'weight/detail.html',
-                              {'weights': weights,
-                               'weightsString': weightsString[:-1]})
+                  {'weights': weights,
+                   'weightsString': weights_string[:-2]})
+
+
+def nutrition(request):
+    print UserMealLink.objects.filter(user=request.user.id).date()
+    return render(request, 'nutrition/detail.html',
+                  {'nutrition_s': UserMealLink.objects.filter(user=request.user.id)})
 
 
 def main(request):
@@ -99,3 +94,20 @@ def secured(request):
 
 def test_graph(request):
     return render(request, 'test.html')
+
+
+def exercises(request):
+    exercise_by_type = sport_to_string(Exercise.objects.filter(type=request.type.id).order_by('name'))
+    return render(request, 'sport/detail.html',
+                  {'exercise': exercise_by_type[:-2]})
+
+
+# def user_exercises(request):
+#    exercises_day = UserExerciseLink.objects.filter(user=request.user.id).order_by('name')
+
+
+def sport_to_string(list):
+    string = ''
+    for item in list:
+        string += '["' + str(item.name) + '"]\n'
+    return string
