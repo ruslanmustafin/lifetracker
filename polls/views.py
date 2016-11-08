@@ -86,21 +86,8 @@ def weight(request):
 
 
 def nutrition(request):
-    # print Weight.objects.filter(user=request.user.id)
-    # user_id = request.user.id
-    #
-    # current_weight = Weight.objects.get(user=user_id)
-    #
-    # print current_weight
-    # tender = form.save(commit=False)
-    # tender.owner_id_id = request.user.id
-    # print(request.user.id)
-    # tender.save()
-    # messages.success(request, 'Tender created')
-    # return redirect('tenders:tenders')
-    #
     return render(request, 'nutrition/detail.html',
-                              {'nutrition_s': Meal.objects.filter(user=request.user.id)})
+                               {'nutrition_s': Meal.objects.filter()})
 
 
 def main(request):
