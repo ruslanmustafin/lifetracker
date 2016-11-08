@@ -68,6 +68,11 @@ class Photo(models.Model):
         managed = False
         db_table = 'PHOTO'
 
+class UserPhoto(models.Model):
+    name = models.CharField(max_length=255)
+    user = models.ForeignKey(User, models.DO_NOTHING, db_column='user')
+    image = models.ImageField(upload_to='static/photos/', null=True, max_length=255)
+
 
 class Unit(models.Model):
     unit_id = models.AutoField(primary_key=True)
