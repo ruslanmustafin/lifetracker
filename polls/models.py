@@ -45,6 +45,10 @@ class Meal(models.Model):
     fat = models.IntegerField(blank=True, null=True)
     carbs = models.IntegerField(blank=True, null=True)
 
+    class Meta:
+        managed = False
+        db_table = 'MEAL'
+
     @staticmethod
     def get_type_name(type_number):
         meal_type_dict = {0:'food', 1:'beverage'}
@@ -52,10 +56,6 @@ class Meal(models.Model):
             return meal_type_dict[type_number]
         else:
             return 'unknown'
-
-    class Meta:
-        managed = False
-        db_table = 'MEAL'
 
 
 class Photo(models.Model):
@@ -94,6 +94,7 @@ class UserExerciseLink(models.Model):
     user_exercise_link_id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, models.DO_NOTHING, db_column='user')
     exercise = models.ForeignKey(Exercise, models.DO_NOTHING, db_column='exercise')
+    value = models.IntegerField()
 
     class Meta:
         managed = False
