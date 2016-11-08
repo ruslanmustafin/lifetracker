@@ -1,31 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Weight details</title>
+{% extends "base.html" %}
+{% block title %}{{ page_title }}{% endblock %}
+{% block header_scripts %}
     <script>
         var chartData = [ {{ weightsString|safe }} ]
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
+{% endblock %}
+{% block footer_scripts %}
     <script>
-        $().ready(function () {
-            $.get('/api/weight/', function (data) {
-
-            });
-        });
-    </script>
-</head>
-<body>
-<ul>
-{#  {% for weight in weights %}#}
-{#    <li>{{ weight.value }}</li>#}
-{#  {% endfor %}#}
-</ul>
-<div style="width: 500px; height: 500px;">
-    <canvas id="weight-chart" width="400" height="400"></canvas>
-</div>
-<script>
     $().ready(function () {
         var labels = []; // x axis
         var weightData = [];
@@ -68,5 +50,9 @@
         });
     })
 </script>
-</body>
-</html>
+{% endblock %}
+{% block content %}
+<div style="width: 500px; height: 500px;">
+    <canvas id="weight-chart" width="400" height="400"></canvas>
+</div>
+{% endblock %}
