@@ -1,10 +1,7 @@
 ﻿-- January
 INSERT INTO "WEIGHT" ("user", weight_date_time, value)
 	VALUES (
-		(SELECT user_id
-		FROM "USER"
-		WHERE email = 'weight@test.com'
-		LIMIT 1),
+		1,
 		'2016.01.01',
 		90
 		);
@@ -12,10 +9,7 @@ INSERT INTO "WEIGHT" ("user", weight_date_time, value)
 -- February
 INSERT INTO "WEIGHT" ("user", weight_date_time, value)
 	VALUES (
-		(SELECT user_id
-		FROM "USER"
-		WHERE email = 'weight@test.com'
-		LIMIT 1),
+		1,
 		'2016.02.01',
 		92
 		);
@@ -23,10 +17,7 @@ INSERT INTO "WEIGHT" ("user", weight_date_time, value)
 -- March
 INSERT INTO "WEIGHT" ("user", weight_date_time, value)
 	VALUES (
-		(SELECT user_id
-		FROM "USER"
-		WHERE email = 'weight@test.com'
-		LIMIT 1),
+		1,
 		'2016.03.01',
 		93
 		);
@@ -34,10 +25,7 @@ INSERT INTO "WEIGHT" ("user", weight_date_time, value)
 -- April
 INSERT INTO "WEIGHT" ("user", weight_date_time, value)
 	VALUES (
-		(SELECT user_id
-		FROM "USER"
-		WHERE email = 'weight@test.com'
-		LIMIT 1),
+		1,
 		'2016.04.01',
 		95
 		);
@@ -45,10 +33,7 @@ INSERT INTO "WEIGHT" ("user", weight_date_time, value)
 -- May
 INSERT INTO "WEIGHT" ("user", weight_date_time, value)
 	VALUES (
-		(SELECT user_id
-		FROM "USER"
-		WHERE email = 'weight@test.com'
-		LIMIT 1),
+		1,
 		'2016.05.01',
 		92
 		);
@@ -56,10 +41,7 @@ INSERT INTO "WEIGHT" ("user", weight_date_time, value)
 -- June
 INSERT INTO "WEIGHT" ("user", weight_date_time, value)
 	VALUES (
-		(SELECT user_id
-		FROM "USER"
-		WHERE email = 'weight@test.com'
-		LIMIT 1),
+		1,
 		'2016.06.01',
 		90
 		);
@@ -67,10 +49,7 @@ INSERT INTO "WEIGHT" ("user", weight_date_time, value)
 -- July
 INSERT INTO "WEIGHT" ("user", weight_date_time, value)
 	VALUES (
-		(SELECT user_id
-		FROM "USER"
-		WHERE email = 'weight@test.com'
-		LIMIT 1),
+		1,
 		'2016.07.01',
 		89
 		);
@@ -78,10 +57,7 @@ INSERT INTO "WEIGHT" ("user", weight_date_time, value)
 -- August
 INSERT INTO "WEIGHT" ("user", weight_date_time, value)
 	VALUES (
-		(SELECT user_id
-		FROM "USER"
-		WHERE email = 'weight@test.com'
-		LIMIT 1),
+		1,
 		'2016.08.01',
 		88
 		);
@@ -89,10 +65,7 @@ INSERT INTO "WEIGHT" ("user", weight_date_time, value)
 -- September
 INSERT INTO "WEIGHT" ("user", weight_date_time, value)
 	VALUES (
-		(SELECT user_id
-		FROM "USER"
-		WHERE email = 'weight@test.com'
-		LIMIT 1),
+		1,
 		'2016.09.01',
 		90
 		);
@@ -100,10 +73,7 @@ INSERT INTO "WEIGHT" ("user", weight_date_time, value)
 -- October
 INSERT INTO "WEIGHT" ("user", weight_date_time, value)
 	VALUES (
-		(SELECT user_id
-		FROM "USER"
-		WHERE email = 'weight@test.com'
-		LIMIT 1),
+		1,
 		'2016.10.01',
 		92
 		);

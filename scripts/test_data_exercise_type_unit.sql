@@ -43,7 +43,7 @@ INSERT INTO public."EXERCISE"(
 
 INSERT INTO public."EXERCISE"(
             name, type)
-    VALUES ('joggint',
+    VALUES ('jogging',
 		(
 		SELECT DISTINCT "exercise_type_id"
 		FROM "EXERCISE_TYPE"
