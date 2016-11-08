@@ -4,10 +4,25 @@
     <meta charset="UTF-8">
     <title>Sport details</title>
     <script>
-        var chartData = [ {{ exercise_by_type|safe }} ]
+        var chart_card = [ {{ exercises_cardio|safe }} ]
+        var chart_force = [ {{ exercises_force|safe }} ]
     </script>
 
 </head>
 <body>
+    Cardio
+<ul>
+  {% for exercise in exercises_cardio %}
+    <li>{{ exercise.name }}</li>
+  {% endfor %}
+</ul>
+
+    Force
+
+<ul>
+  {% for exercise in exercises_force %}
+    <li>{{ exercise.name }}</li>
+  {% endfor %}
+</ul>
 </body>
 </html>

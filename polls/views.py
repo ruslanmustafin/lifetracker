@@ -6,7 +6,7 @@ from django.shortcuts import render
 
 from models import UserMealLink
 from models import Weight
-from models import UserExerciseLink
+from models import ExerciseType
 from models import Exercise
 
 
@@ -65,6 +65,7 @@ def sign_up_in(request):
 def weight(request):
     weights_string = ''
     weights = Weight.objects.filter(user=request.user.id).order_by('weight_date_time')
+
     for weight in weights:
         weights_string += '["' + str(weight.weight_date_time.date()) + '", ' + str(weight.value) + ']' + ', '
 
@@ -74,7 +75,6 @@ def weight(request):
 
 
 def nutrition(request):
-    print UserMealLink.objects.filter(user=request.user.id).date()
     return render(request, 'nutrition/detail.html',
                   {'nutrition_s': UserMealLink.objects.filter(user=request.user.id)})
 
@@ -97,17 +97,13 @@ def test_graph(request):
 
 
 def exercises(request):
-    exercise_by_type = sport_to_string(Exercise.objects.filter(type=request.type.id).order_by('name'))
+    type_cardio = ExerciseType.objects.filter(name="cardio")
+    type_force = ExerciseType.objects.filter(name="strength")
+    exercises_cardio = list(Exercise.objects.filter(type=type_cardio).order_by('name'))
+    exercises_force = list(Exercise.objects.filter(type=type_force).order_by('name'))
     return render(request, 'sport/detail.html',
-                  {'exercise': exercise_by_type[:-2]})
+                  {'exercises_cardio': exercises_cardio, 'exercises_force': exercises_force})
 
 
 # def user_exercises(request):
 #    exercises_day = UserExerciseLink.objects.filter(user=request.user.id).order_by('name')
-
-
-def sport_to_string(list):
-    string = ''
-    for item in list:
-        string += '["' + str(item.name) + '"]\n'
-    return string
