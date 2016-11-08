@@ -1,0 +1,139 @@
+<html>
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <caption><h2 align="center">My Meal </h2></caption>
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">My Meal</label>
+                    <div class="col-sm-10">
+                        <select class="form-control">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputMealWeight" class="col-sm-2 control-label">Weight</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">g</div>
+                        <input type="number" class="form-control" id="inputMealWeight" placeholder="Amount">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputProtein" class="col-sm-2 control-label">Protein</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">g</div>
+                        <input type="number" class="form-control" id="inputProtein" placeholder="Amount">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputCarb" class="col-sm-2 control-label">Carb</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">g</div>
+                        <input type="number" class="form-control" id="inputCarb" placeholder="Amount">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputFat" class="col-sm-2 control-label">Fat</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">g</div>
+                        <input type="number" class="form-control" id="inputFat" placeholder="Amount">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputCal" class="col-sm-2 control-label">TOTAL</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">cal</div>
+                        <input type="number" class="form-control" id="inputCal" placeholder="Amount">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="add" class="btn btn-default">Add</button>
+                    </div>
+                </div>
+            </form>
+
+            <caption><h2 align="center">My Weight </h2></caption>
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="inputDate">Date</label>
+                    <input type="datetime" class="form-control" id="inputDate" placeholder="01.01.2001">
+                </div>
+                <div class="form-group">
+                    <label for="inputWeight">Weight</label>
+                    <input type="number" class="form-control" id="inputWeight" placeholder="50 kg">
+                </div>
+                <button type="add" class="btn btn-default">Add</button>
+            </form>
+
+            <caption><h2 align="center">My Exercises </h2></caption>
+            <form class="form-inline">
+                <div class="form-group">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label for="inputDate">Type</label>
+                            <select class="form-control">
+                                <option>Cardio</option>
+                                <option>Strength</option>
+                            </select>
+                        </div>
+                    </form>
+                    <button type="ok" class="btn btn-default">Ok</button>
+
+
+                    <caption><h2 align="center">Cardio </h2></caption>
+
+                    <div class="form-group">
+                        <form class="form-inline">
+                            <label for="inputTime">Time</label>
+                            <input type="number" class="form-control" id="inputTime" placeholder="25 kg">
+                            <button type="add" class="btn btn-default">Add</button>
+                        </form>
+                    </div>
+
+                    <caption><h2 align="center">Strength </h2></caption>
+
+                    <div class="form-group">
+                        <form class="form-inline">
+                            <label for="inputExerWeight">Weight</label>
+                            <input type="number" class="form-control" id="inputExerWeight" placeholder="25 kg">
+                            <button type="add" class="btn btn-default">Add</button>
+                        </form>
+                    </div>
+
+                </div>
+            </form>
+            <caption><h2 align="center">My Gallery </h2></caption>
+
+
+            <div class="form-group">
+                <form class="form-inline">
+                    <label for="inputPhoto">Photo input</label>
+                    <input type="file" id="inputPhoto">
+                    <p class="help-block">To control the progress add your photos here.</p>
+                    <button type="add" class="btn btn-default">Add</button>
+                </form>
+            </div>
+
+
+            </form>
+
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
