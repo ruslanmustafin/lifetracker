@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nutrition details</title>
+</head>
+<body>
+<ul>
+  {% for nutrition in nutrition_s %}
+      <li>{{ nutrition.meal.calories }}</li>
+      <li>{{ nutrition.meal.protein }}</li>
+      <li>{{ nutrition.meal.fat }}</li>
+      <li>{{ nutrition.meal.carbs }}</li>
+  {% endfor %}
+
+</ul>
+</body>
+</html>
