@@ -28,8 +28,8 @@ router.register(r'groups', rest_views.GroupViewSet)
 # router.register(r'weight', rest_views.WeightViewSet)
 # router.register(r'photo', rest_views.PhotoList.as_view(), base_name='userphoto-list')
 router.register(r'weight', rest_views.WeightSelfViewSet, base_name='weight-list')
-router.register(r'exercises', rest_views.ExerciseSelfViewSet, base_name='exercises-list')
-router.register(r'meals', rest_views.MealSelfViewSet, base_name='meals-list')
+# router.register(r'exercises', rest_views.ExerciseSelfViewSet, base_name='exercises-list')
+# router.register(r'meals', rest_views.MealSelfViewSet, base_name='meals-list')
 
 
 urlpatterns = [
@@ -44,5 +44,7 @@ urlpatterns = [
     url(r'^test_graph/', polls_views.test_graph),
     url(r'^api/', include(router.urls)),
     url(r'^api/photo/$', rest_views.PhotoList.as_view(), name='myphoto-list'),
+    url(r'^api/meals/$', rest_views.MealsList.as_view(), name='meals-list'),
+    url(r'^api/exercises/$', rest_views.ExerciseList.as_view(), name='meals-list'),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

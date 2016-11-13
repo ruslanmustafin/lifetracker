@@ -99,6 +99,7 @@ class UserExerciseLink(models.Model):
     user_exercise_link_id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, models.DO_NOTHING, db_column='user')
     exercise = models.ForeignKey(Exercise, models.DO_NOTHING, db_column='exercise')
+    value = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
