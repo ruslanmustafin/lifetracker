@@ -6,7 +6,7 @@ from django.shortcuts import render
 
 from models import UserMealLink
 from models import Weight
-from models import UserExerciseLink
+from models import Meal
 from models import Exercise
 
 
@@ -66,17 +66,26 @@ def weight(request):
     weights_string = ''
     weights = Weight.objects.filter(user=request.user.id).order_by('weight_date_time')
     for weight in weights:
-        weights_string += '[' + str(weight.weight_id) + ', "' + str(weight.weight_date_time.date()) + '", ' + str(weight.value) + ']' + ', '
+        weights_string += '["' + str(weight.weight_id) + '", ' + str(weight.weight_date_time.date()) + '", ' + str(weight.value) + ']' + ', '
 
     return render(request, 'weight/detail.html',
                   {'weights': weights,
                    'weightsString': weights_string[:-2]})
 
 
-def nutrition(request):
-    print UserMealLink.objects.filter(user=request.user.id).date()
+# def nutrition(request):
+#     print UserMealLink.objects.filter(user=request.user.id).order_by('meal_date_time')
+#     return render(request, 'nutrition/detail.html',
+#                   {'nutrition_s': UserMealLink.objects.filter(user=request.user.id)})
+
+
+def meal_by_id(request):
+    meal_string = ''
+    _nutrition = Meal.objects.filter(meal_id="1")
+    print _nutrition.count()
     return render(request, 'nutrition/detail.html',
-                  {'nutrition_s': UserMealLink.objects.filter(user=request.user.id)})
+                  {'nutritions': _nutrition,
+                   'mealString': meal_string})
 
 
 def main(request):
