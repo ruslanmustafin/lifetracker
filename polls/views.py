@@ -66,7 +66,7 @@ def weight(request):
     weights_string = ''
     weights = Weight.objects.filter(user=request.user.id).order_by('weight_date_time')
     for weight in weights:
-        weights_string += '["' + str(weight.weight_date_time.date()) + '", ' + str(weight.value) + ']' + ', '
+        weights_string += '["' + str(weight.weight_id) + '", ' + str(weight.weight_date_time.date()) + '", ' + str(weight.value) + ']' + ', '
 
     return render(request, 'weight/detail.html',
                   {'weights': weights,
