@@ -53,7 +53,8 @@
                     }
                 }
             });
-        })
+        });
+    weightScripts();
     </script>
 {% endblock %}
 {% block content %}
@@ -89,19 +90,7 @@
                     <th>Diff</th>
                 </tr>
                 </thead>
-                <tbody>
-                {% for weight in weights %}
-                    <tr>
-                        {% comment %}<th scope="row"></th>{% endcomment %}
-                        <td>{{ weight.weight_date_time|date:"d.m.y" }}</td>
-                        <td>{{ weight.value }}</td>
-                        <th>
-                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                        </th>
-                        <td></td>
-                    </tr>
-                {% endfor %}
-                </tbody>
+                <tbody id="weight-table"></tbody>
             </table>
         </div>
         <div class="col-sm-12 col-md-8">
