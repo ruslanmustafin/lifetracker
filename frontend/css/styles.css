@@ -1,3 +1,6 @@
+.img-fullwidth img {
+  max-width: 100%; }
+
 .full-width-chart {
   margin: 0 auto;
   width: 80%; }
