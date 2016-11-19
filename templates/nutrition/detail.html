@@ -23,6 +23,7 @@
         var chartData = [{{ mealString|safe }}]
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
+
 {% endblock %}
 {% block footer_scripts %}
     <script>
@@ -65,49 +66,34 @@
     </script>
 {% endblock %}
 {% block content %}
-    <div class="col-sm-12">
-        {% for nutrition in nutritions %}
-            <h1 align="center">
-                {{ nutrition.name }}
-            </h1>
-        {% endfor %}
-        <div class="text-center img-fullwidth">
-            <img align="middle" src="/static/img/food.png">
-        </div>
-        <br>
+<div class="col-sm-12">
+    {% for nutrition in nutritions %}
+        <h1 align="center">
+            {{ nutrition.name }}
+        </h1>
+    {% endfor %}
+    <div class="text-center img-fullwidth">
+        <img align="middle" src="/static/img/grecha.jpg" width="600px">
     </div>
-    <div class="col-sm-12 ">
-        <div class="row">
-            <div class="col-sm-4 col-sm-offset-1">
-                <table class="table table-bordered table-striped">
-                    <thead>
-                    <td>
-                        {% comment %}<th>#</th>{% endcomment %}
-                    <th>Calories</th>
-                    <th>Protein</th>
-                    <th>Carbs</th>
-                    <th>Fat</th>
-                    </td>
-                    </thead>
-                    <tbody>
-                    {% for nutrition in nutritions %}
-                        <tr>
-                            {% comment %}<th scope="row"></th>{% endcomment %}
-                        <td>{{ nutrition.name }}</td>
-                        <td>{{ nutrition.calories }}</td>
-                        <td>{{ nutrition.protein }}</td>
-                        <td>{{ nutrition.carbs }}</td>
-                        <th>{{ nutrition.fat }}</th>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-sm-6 col-sm-offset-1">
-                <div class="full-width-chart">
-                    <canvas id="nutrition-chart"></canvas>
-                </div>
+    <br>
+</div>
+<div class="col-sm-12" >
+    <div class="row" >
+        <div class="col-sm-2 col-sm-offset-3">
+            <table class="table table-bordered table-striped">
+                {% for nutrition in nutritions %}
+                <tbody><th>Calories</th><td>{{ nutrition.calories }}</td>
+                <tbody><th>Protein</th><td>{{ nutrition.protein }}</td></tbody>
+                <tbody><th>Carbs</th><td>{{ nutrition.carbs }}</td></tbody>
+                <tbody><th>Fat</th><td>{{ nutrition.fat }}</td></tbody>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="col-md-4 col-sm-offset-1">
+            <div class="fullWidth">
+                <canvas id="nutrition-chart"></canvas>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}

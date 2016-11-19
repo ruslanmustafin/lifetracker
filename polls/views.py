@@ -66,7 +66,8 @@ def weight(request):
     weights_string = ''
     weights = Weight.objects.filter(user=request.user.id).order_by('weight_date_time')
     for weight in weights:
-        weights_string += '["' + str(weight.weight_id) + '", ' + str(weight.weight_date_time.date()) + '", ' + str(weight.value) + ']' + ', '
+        weights_string += '["' + str(weight.weight_id) + '", ' + str(weight.weight_date_time.date()) + '", ' + str(
+            weight.value) + ']' + ', '
 
     return render(request, 'weight/detail.html',
                   {'weights': weights,
@@ -79,9 +80,18 @@ def weight(request):
 #                   {'nutrition_s': UserMealLink.objects.filter(user=request.user.id)})
 
 
-def meal_by_id(request):
+def meal_list(request):
     meal_string = ''
-    _nutrition = Meal.objects.filter(meal_id="1")
+    _nutrition = Meal.objects.filter().order_by('name')
+    print _nutrition.count()
+    return render(request, 'nutrition/list.html',
+                  {'nutritions': _nutrition,
+                   'mealString': meal_string})
+
+
+def meal_by_id(request, id):
+    meal_string = ''
+    _nutrition = Meal.objects.filter(meal_id=id)
     print _nutrition.count()
     return render(request, 'nutrition/detail.html',
                   {'nutritions': _nutrition,

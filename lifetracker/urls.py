@@ -41,6 +41,7 @@ urlpatterns = [
     url(r'^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^weight/$', polls_views.weight),
-    url(r'^nutrition/$', polls_views.meal_by_id),
+    url(r'^nutrition/$', polls_views.meal_list),
+    url(r'^nutrition/details/(?P<id>\w{0,50})/$', polls_views.meal_by_id),
     url(r'^sport/$', polls_views.exercises),
 ]

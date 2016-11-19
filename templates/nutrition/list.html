@@ -1,0 +1,52 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Nutrition details</title>#}
+{#</head>#}
+{#<body>#}
+{#<ul>#}
+{#  {% for nutrition in nutrition_s %}#}
+{#      <li>{{ nutrition.meal.calories }}</li>#}
+{#      <li>{{ nutrition.meal.protein }}</li>#}
+{#      <li>{{ nutrition.meal.fat }}</li>#}
+{#      <li>{{ nutrition.meal.carbs }}</li>#}
+{#  {% endfor %}#}
+{##}
+{#</ul>#}
+{#</body>#}
+{#</html>#}
+{% extends "base.html" %}
+{% block title %}{{ page_title }}{% endblock %}
+{% block header_scripts %}
+    <script>
+        var chartData = [{{ mealString|safe }}]
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
+
+{% endblock %}
+{% block content %}
+    <div class="col-sm-12">
+        <h1 align="center">
+            List of Meals
+        </h1>
+        <div class="row row-centered">
+            <div class="col-sm-6 col-sm-offset-3">
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <th>Meal</th>
+                    <th>Calories</th>
+                    <th>P/C/F</th>
+                    </tbody>
+                    {% for nutrition in nutritions %}
+                        <tbody>
+                        <th><a href="details/{{ nutrition.meal_id }}">{{ nutrition.name }}</a></th>
+                        <td>{{ nutrition.calories }}</td>
+                        <td>{{ nutrition.protein }}/{{ nutrition.carbs }}/{{ nutrition.fat }}</td>
+                        </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
