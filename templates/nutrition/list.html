@@ -33,11 +33,11 @@
         <div class="row row-centered">
             <div class="col-sm-6 col-sm-offset-3">
                 <table class="table table-bordered table-striped">
-                    <tbody>
+                    <thead>
                     <th>Meal</th>
                     <th>Calories</th>
                     <th>P/C/F</th>
-                    </tbody>
+                    </thead>
                     {% for nutrition in nutritions %}
                         <tbody>
                         <th><a href="details/{{ nutrition.meal_id }}">{{ nutrition.name }}</a></th>
