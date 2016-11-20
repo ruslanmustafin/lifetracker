@@ -28,18 +28,12 @@
 {% block footer_scripts %}
     <script>
         $().ready(function () {
-            var labels = []; // x axis
-            var nutritionData = [];
-            $.each(chartData, function (index, value) {
-                labels.push(value[0]);
-                nutritionData.push(value[1]);
-            });
             var ctx = $('#nutrition-chart'); // canvas id
             var data = {
-                labels: labels,
+                labels: ["Protein", "Carbohydrate", "Fat"],
                 datasets: [
                     {
-                        data: [300, 50, 100],
+                        data: chartData,
                         backgroundColor: [
                             "#FF6384",
                             "#36A2EB",
@@ -53,13 +47,10 @@
                     }]
             };
             var myLineChart = new Chart(ctx, {
-                type: 'pie',
+                type: 'doughnut',
                 data: data,
                 options: {
-                    legend: {
-                        position: 'bottom'
-
-                    }
+                    legend: false
                 }
             });
         });

@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from django.shortcuts import render
 
-from models import UserMealLink
 from models import Weight
 from models import Meal
 from models import Exercise
@@ -92,6 +91,8 @@ def meal_list(request):
 def meal_by_id(request, id):
     meal_string = ''
     _nutrition = Meal.objects.filter(meal_id=id)
+    for n in _nutrition:
+        meal_string += str(n.protein) + ', ' + str(n.carbs) + ', ' + str(n.fat)
     print _nutrition.count()
     return render(request, 'nutrition/detail.html',
                   {'nutritions': _nutrition,
