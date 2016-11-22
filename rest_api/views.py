@@ -127,6 +127,7 @@ class MealsList(APIView):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 class PhotoList(APIView):
 
     def get(self, request, format=None):
