@@ -1,3 +1,4 @@
+from datetime import date, timedelta
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -72,7 +73,7 @@ def sign_up_in(request):
 
 def weight(request):
     weights_string = ''
-    weights = Weight.objects.filter(user=request.user.id).order_by('weight_date_time')
+    weights = Weight.objects.filter(user=request.user.id).order_by('weight_date_time')[:100]
     for weight in weights:
         weights_string += '["' + str(weight.weight_id) + '", "' + str(weight.weight_date_time.date()) + '", ' + str(
             weight.value) + ']' + ', '
