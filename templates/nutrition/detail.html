@@ -1,18 +1,90 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Nutrition details</title>
-</head>
-<body>
-<ul>
-  {% for nutrition in nutrition_s %}
-      <li>{{ nutrition.meal.calories }}</li>
-      <li>{{ nutrition.meal.protein }}</li>
-      <li>{{ nutrition.meal.fat }}</li>
-      <li>{{ nutrition.meal.carbs }}</li>
-  {% endfor %}
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Nutrition details</title>#}
+{#</head>#}
+{#<body>#}
+{#<ul>#}
+{#  {% for nutrition in nutrition_s %}#}
+{#      <li>{{ nutrition.meal.calories }}</li>#}
+{#      <li>{{ nutrition.meal.protein }}</li>#}
+{#      <li>{{ nutrition.meal.fat }}</li>#}
+{#      <li>{{ nutrition.meal.carbs }}</li>#}
+{#  {% endfor %}#}
+{##}
+{#</ul>#}
+{#</body>#}
+{#</html>#}
+{% extends "base.html" %}
+{% block title %}{{ page_title }}{% endblock %}
+{% block header_scripts %}
+    <script>
+        var chartData = [{{ mealString|safe }}]
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
 
-</ul>
-</body>
-</html>
+{% endblock %}
+{% block footer_scripts %}
+    <script>
+        $().ready(function () {
+            var ctx = $('#nutrition-chart'); // canvas id
+            var data = {
+                labels: ["Protein", "Carbohydrate", "Fat"],
+                datasets: [
+                    {
+                        data: chartData,
+                        backgroundColor: [
+                            "#FF6384",
+                            "#36A2EB",
+                            "#FFCE56"
+                        ],
+                        hoverBackgroundColor: [
+                            "#FF6384",
+                            "#36A2EB",
+                            "#FFCE56"
+                        ]
+                    }]
+            };
+            var myLineChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: data,
+                options: {
+                    legend: false
+                }
+            });
+        });
+    </script>
+{% endblock %}
+{% block content %}
+<div class="col-sm-12">
+    {% for nutrition in nutritions %}
+        <h1 align="center">
+            {{ nutrition.name }}
+        </h1>
+    {% endfor %}
+    <div class="text-center img-fullwidth">
+        <img align="middle" src="/static/img/grecha.jpg" width="600px">
+    </div>
+    <br>
+</div>
+<div class="col-sm-12" >
+    <div class="row" >
+        <div class="col-sm-2 col-sm-offset-3">
+            <table class="table table-bordered table-striped">
+                {% for nutrition in nutritions %}
+                <tbody><th>Calories</th><td>{{ nutrition.calories }}</td>
+                <tbody><th>Protein</th><td>{{ nutrition.protein }}</td></tbody>
+                <tbody><th>Carbs</th><td>{{ nutrition.carbs }}</td></tbody>
+                <tbody><th>Fat</th><td>{{ nutrition.fat }}</td></tbody>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="col-md-4 col-sm-offset-1">
+            <div class="fullWidth">
+                <canvas id="nutrition-chart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

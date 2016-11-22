@@ -12,15 +12,18 @@
     <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon"/>
     <link rel="apple-touch-icon" type="image/x-icon" href="img/apple-touch-icon-57x57-precomposed.png">
     <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="img/apple-touch-icon-72x72-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="img/apple-touch-icon-114x114-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="img/apple-touch-icon-144x144-precomposed.png">
-
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114"
+          href="img/apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144"
+          href="img/apple-touch-icon-144x144-precomposed.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- CSS -->
     <link href="/static/css/bootstrap.css" rel="stylesheet">
     <link href="/static/css/style.css" rel="stylesheet">
     <link href="/static/css/styles.css" rel="stylesheet">
     <link href="/static/css/menu.css" rel="stylesheet">
     <link href="/static/css/fontello.css" rel="stylesheet">
+    <link href="/static/css/floating_button.css" rel="stylesheet">
 
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -39,50 +42,27 @@
 
     <header>
         <div id="logo" data-retina="true">
-            <a href="index.html"><img src="/static/img/logo.png" alt="" data-retina="true" width="160" height="40"></a>
+            <a href="/"><img src="/static/img/logo.png" alt="" data-retina="true" width="160" height="40"></a>
         </div>
         <div class="col-md-12 col-sm-12">
             <a id="menu-button-mobile" href="#"><i class=" icon-menu"></i></a><!-- Menu button responsive-->
 
+
             <nav class="menu_container">
                 <ul class="menu">
-                    <li class="drop-normal"><a href="#" class="drop-down">Calculators</a>
-                        <div class="drop-down-container normal">
-                            <ul>
-                                <li><a href="daily-calorie-calculator.html">Daily calories calculator</a></li>
-                                <li><a href="calories-burned-by-heart-rate.html">Calories Burned by Heart rate</a></li>
-                                <li><a href="calories-burned-by-activities.html">Calories Burned by Activities</a></li>
-                                <li><a href="BMI-body-mass-calculator.html">BMI Body Mass Calculator</a></li>
-                            </ul>
-                        </div><!-- End dropdown normal -->
+                    <li class="menu"><a href="/weight">Weight</a></li>
+                    <li class="menu"><a href="/nutrition/">Food</a>
+{#                        <div class="drop-down-container normal">#}
+{#                            <ul>#}
+{#                                <li><a href="./nutrition/">List</a></li>#}
+{#                            </ul>#}
+{#                        </div><!-- End dropdown normal -->#}
                     </li>
-                    <li class="drop-normal"><a href="#" class="drop-down">Programs</a>
-                        <div class="drop-down-container normal">
-                            <ul>
-                                <li><a href="cardio_program.html">Cardio Program</a></li>
-                                <li><a href="toning_program.html">Toning Program</a></li>
-                                <li><a href="functionality_program.html">Functionaly Program</a></li>
-                                <li><a href="body_and_mind_program.html">Body and Mind Program</a></li>
-                            </ul>
-                        </div><!-- End dropdown normal -->
-                    </li>
-                    <li class="drop-normal"><a href="#" class="drop-down">Pages</a>
-                        <div class="drop-down-container normal">
-                            <ul>
-                                <li><a href="about.html">About</a></li>
-                                <li><a href="programs.html">Programs</a></li>
-                                <li><a href="pricing.html">Pricing</a></li>
-                                <li><a href="blog.html">Blog</a></li>
-                                <li><a href="widget/index.html">Widget version</a></li>
-                                <li><a href="shortcodes.html">Shortcodes</a></li>
-                                <li><a href="contacts.html">Contacts</a></li>
-                            </ul>
-                        </div><!-- End dropdown normal -->
-                    </li>
-                    <li><a href="http://themeforest.net/item/activity-calories-calculators-and-sport-activity/8792981?ref=ansonika">Purchase this template</a></li>
+                    <li class="drop-normal"><a href="#" class="drop-down">Excersices</a></li>
+                    <li class="drop-normal"><a href="#" class="drop-down">Profile</a></li>
+                    <li class="drop-normal"><a href="#" class="drop-down">Help</a></li>
                 </ul>
             </nav>
-        </div> <!-- End col lg 12 -->
         <div id="header_shadow"></div>
     </header>
 
@@ -97,7 +77,8 @@
 <!-- DATETIMEPICKER -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.16.0/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.43/js/bootstrap-datetimepicker.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.43/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.43/css/bootstrap-datetimepicker.min.css"
+      rel="stylesheet">
 <!-- OTHER JS -->
 <script src="/static/js/bootstrap.min.js"></script>
 <script src="/static/js/retina-replace.min.js"></script>
