@@ -17,6 +17,7 @@ def handler404(request):
     response.status_code = 404
     return response
 
+
 def login_view(request):
     return render(request, 'index-unreg.html', {})
     # return render(request, 'login.html', {})
@@ -73,7 +74,7 @@ def weight(request):
     weights_string = ''
     weights = Weight.objects.filter(user=request.user.id).order_by('weight_date_time')
     for weight in weights:
-        weights_string += '["' + str(weight.weight_id) + '", ' + str(weight.weight_date_time.date()) + '", ' + str(
+        weights_string += '["' + str(weight.weight_id) + '", "' + str(weight.weight_date_time.date()) + '", ' + str(
             weight.value) + ']' + ', '
 
     return render(request, 'weight/detail.html',
