@@ -1,6 +1,6 @@
 $().ready(function () {
     $('.datetimepicker').datetimepicker({
-        format: 'Y.MM.DD'
+        format: 'YYYY-MM-DD'
     });
 });
 
@@ -15,7 +15,6 @@ function weightScripts() {
                 '<tr><td>' + value[1] + '</td><td>' + value[2] + '</td><td><a href="#" data-weight-id=' + value[0] + ' class="remove-weight-btn"><span class="glyphicon glyphicon-trash"></span></a></td><td>' + diff + '</td></tr>'
             );
             weightBuff = value[2];
-            console.log('table edit')
         });
 
         var $dataTable = $('#weight_table').DataTable({
@@ -48,7 +47,6 @@ function weightScripts() {
                     // update graph
                     for (var i = 0; i < chartData.length; i++) {
                         if (chartData[i][0] == weightId) {
-                            console.log(chartData[i]);
                             chartData.splice(i, 1);
                             graphData.labels.splice(i, 1);
                             graphData.weightData.splice(i, 1);
@@ -56,11 +54,40 @@ function weightScripts() {
                             break;
                         }
                     }
-                    console.log(data);
                 }
             });
         });
     });
+    $('#add_weight_btn').on('click',function(e){
+        e.preventDefault();
+        var date = $('#weight_date').val();
+        var weight = $('#weight_value').val();
+        var checkFlag = true;
+        if(!date || !weight) {
+            alert('Please provide weighting date and value.');
+            checkFlag = false;
+        }
+        if (new Date(date) == 'Invalid Date') {
+	        alert('Wrong date provided.');
+            checkFlag = false;
+        }
+        if(!isNaN(weight)) {
+            alert('Please provide proper weight value (ex.: 100, 99.9)');
+            checkFlag = false;
+        }
+        if(!checkFlag) {
+            return false
+        }
+        $.ajax({
+            headers: {"X-CSRFToken": $.cookie('csrftoken')},
+            type: "POST",
+            url: '/api/weight/',
+            data: {
+                value: weight,
+                weight_date_time: date+'T00:00:00+00:00'
+            }
+        })
+    })
 }
 
 function mealAdd() {
