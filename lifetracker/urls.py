@@ -26,7 +26,11 @@ router = routers.DefaultRouter()
 router.register(r'users', rest_views.UserViewSet)
 router.register(r'groups', rest_views.GroupViewSet)
 # router.register(r'weight', rest_views.WeightViewSet)
-router.register(r'weight', rest_views.WeightSelfViewSet, base_name='weight')
+# router.register(r'photo', rest_views.PhotoList.as_view(), base_name='userphoto-list')
+router.register(r'weight', rest_views.WeightSelfViewSet, base_name='weight-list')
+# router.register(r'exercises', rest_views.ExerciseSelfViewSet, base_name='exercises-list')
+# router.register(r'meals', rest_views.MealSelfViewSet, base_name='meals-list')
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -39,8 +43,13 @@ urlpatterns = [
     url(r'^$', polls_views.main),
     url(r'^test_graph/', polls_views.test_graph),
     url(r'^api/', include(router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^weight/$', polls_views.weight),
-    url(r'^nutrition/$', polls_views.nutrition),
+    url(r'^nutrition/$', polls_views.meal_list),
+    url(r'^nutrition/details/(?P<id>\w{0,50})/$', polls_views.meal_by_id),
     url(r'^sport/$', polls_views.exercises),
+    url(r'^api/photo/$', rest_views.PhotoList.as_view(), name='myphoto-list'),
+    url(r'^api/meals/$', rest_views.MealsList.as_view(), name='meals-list'),
+    url(r'^api/exercises/$', rest_views.ExerciseList.as_view(), name='meals-list'),
+    url(r'^api/weight/$', rest_views.WeightView.as_view(), name='weight-list'),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

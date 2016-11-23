@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{% block title %}{{ page_title }}{% endblock %}
+{% block header_scripts %}
+    <script>
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
+{% endblock %}
+{% block footer_scripts %}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+    <script>
+        mealAdd();
+    </script>
+{% endblock %}
+{% block content %}
+    <div class="col-sm-12">
+        <h1 align="center">
+            List of Meals
+        </h1>
+        <div class="row row-centered">
+            <div class="col-sm-6 col-sm-offset-3">
+                <table class="table table-bordered table-striped" id="meal_table">
+                    <thead>
+                    <th>Meal</th>
+                    <th>Calories</th>
+                    <th>P/C/F</th>
+                    </thead>
+                    {% for nutrition in nutritions %}
+                        <tbody>
+                        <th><a href="details/{{ nutrition.meal_id }}">{{ nutrition.name }}</a></th>
+                        <td>{{ nutrition.calories }}</td>
+                        <td>{{ nutrition.protein }}/{{ nutrition.carbs }}/{{ nutrition.fat }}</td>
+                        </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <div class="col-sm-1 col-sm-offset-11">
+            <a href="" class="float" data-toggle="modal"
+               data-target="#mealModal">
+                <i class="fa fa-plus my-float"></i>
+            </a>
+            <div class="label-container">
+                <div class="label-text">Add meal</div>
+                <i class="fa fa-play label-arrow"></i>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="mealModal" tabindex="-1" role="dialog" aria-labelledby="mealModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title" id="foodModal">Add Meal</h4>
+                </div>
+                <div class="modal-body">
+                    <h1>Meal Info</h1>
+
+                    <form class="form-horizontal" role="form" method="post" id="form-add-meal">
+
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="name" name="name"
+                                       placeholder="Name of meal" value="">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="calorie" class="col-sm-2 col-sm-offset-2 control-label">Calorie</label>
+                            <div class="col-sm-6">
+
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="calorie" name="calorie"
+                                           placeholder="Calorie value">
+                                    <div class="input-group-addon">per 100g</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Protein" class="col-sm-2 col-sm-offset-2 control-label">Protein</label>
+                            <div class="col-sm-6">
+
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="protein" name="protein"
+                                           placeholder="Protein value">
+                                    <div class="input-group-addon">per 100g</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Fat" class="col-sm-2 col-sm-offset-2 control-label">Fat</label>
+                            <div class="col-sm-6">
+
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="fat" name="fat"
+                                           placeholder="Fat value">
+
+                                    <div class="input-group-addon">per 100g</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Carbs" class="col-sm-2 col-sm-offset-2 control-label">Carbs</label>
+                            <div class="col-sm-6">
+
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="carbs" name="carbs"
+                                           placeholder="Carbs value">
+                                    <div class="input-group-addon">per 100g</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-10 col-sm-offset-2">
+                                <! Will be used to display an alert to the user>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="submit-button-add-meal">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

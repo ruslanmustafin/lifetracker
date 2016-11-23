@@ -2,22 +2,31 @@
 {% block title %}{{ page_title }}{% endblock %}
 {% block header_scripts %}
     <script>
-        var chartData = [{{ weightsString|safe }}]
+        var myChart;
+        var chartData = [{{ weightsString|safe }}];
+        var graphData = [];
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
 {% endblock %}
 {% block footer_scripts %}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
     <script>
+        var labels = []; // x axis
+        var graphData = {labels:[],weightData:[]};
         $().ready(function () {
-            var labels = []; // x axis
-            var weightData = [];
+            //var weightData.labels;
+            //var weightData.weightData;
+
             $.each(chartData, function (index, value) {
-                labels.push(value[0]);
-                weightData.push(value[1]);
+                graphData.labels.push(value[1]);
+                graphData.weightData.push(value[2]);
             });
             var ctx = $('#weight-chart'); // canvas id
             var data = {
-                labels: labels,
+                labels: graphData.labels,
                 datasets: [
                     {
                         label: "My weight dynamic",
@@ -38,18 +47,17 @@
                         pointHoverBorderWidth: 2,
                         pointRadius: 1,
                         pointHitRadius: 10,
-                        data: weightData,
+                        data: graphData.weightData,
                         spanGaps: false
                     }
                 ]
             };
-            var myLineChart = new Chart(ctx, {
+            myChart = new Chart(ctx, {
                 type: 'line',
                 data: data,
                 options: {
                     legend: {
                         position: 'bottom'
-
                     }
                 }
             });
@@ -67,20 +75,20 @@
     </div>
     <div class="col-sm-12">
         <br>
-        <form class="form-inline text-center">
+        <form class="form-inline text-center" id="add_weight_form">
             <div class="form-group">
-                <input class="form-control" id="weight_date_start" placeholder="Date start">
+                <input class="form-control datetimepicker" id="weight_date" placeholder="Weighting date">
             </div>
             <div class="form-group">
-                <input class="form-control" id="weight_date_end" placeholder="Date end">
+                <input class="form-control" id="weight_value" placeholder="Weight">
             </div>
-            <button type="submit" class="btn btn-primary">Get data</button>
+            <button type="submit" class="btn btn-primary" id="add_weight_btn">Add weight</button>
         </form>
         <br>
     </div>
     <div class="row">
-        <div class="col-sm-12 col-md-4">
-            <table class="table table-bordered table-striped">
+        <div class="col-sm-12 col-md-5">
+            <table class="table table-bordered table-striped" id="weight_table">
                 <thead>
                 <tr>
                     {% comment %}<th>#</th>{% endcomment %}
@@ -93,7 +101,7 @@
                 <tbody id="weight-table"></tbody>
             </table>
         </div>
-        <div class="col-sm-12 col-md-8">
+        <div class="col-sm-12 col-md-7">
             <div class="full-width-chart">
                 <canvas id="weight-chart"></canvas>
             </div>

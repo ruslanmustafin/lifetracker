@@ -51,7 +51,7 @@ class Meal(models.Model):
 
     @staticmethod
     def get_type_name(type_number):
-        meal_type_dict = {0:'food', 1:'beverage'}
+        meal_type_dict = {0: 'food', 1: 'beverage'}
         if meal_type_dict.has_key(type_number):
             return meal_type_dict[type_number]
         else:
@@ -67,6 +67,11 @@ class Photo(models.Model):
     class Meta:
         managed = False
         db_table = 'PHOTO'
+
+class UserPhoto(models.Model):
+    name = models.CharField(max_length=255)
+    user = models.ForeignKey(User, models.DO_NOTHING, db_column='user')
+    image = models.ImageField(upload_to='static/photos/', null=True, max_length=255)
 
 
 class Unit(models.Model):
@@ -94,7 +99,7 @@ class UserExerciseLink(models.Model):
     user_exercise_link_id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, models.DO_NOTHING, db_column='user')
     exercise = models.ForeignKey(Exercise, models.DO_NOTHING, db_column='exercise')
-    value = models.IntegerField()
+    value = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
