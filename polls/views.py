@@ -38,7 +38,7 @@ def profile_view(request):
     return render(request, 'profile.html', {"first_name": request.user.first_name})
 
 
-def auth_and_login(request, onsuccess='/profile/', onfail='/login/'):
+def auth_and_login(request, onsuccess='/', onfail='/login/'):
     user = authenticate(username=request.POST['email'], password=request.POST['password'])
     if user is not None:
         login(request, user)
