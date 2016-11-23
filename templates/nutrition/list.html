@@ -1,21 +1,3 @@
-{#<!DOCTYPE html>#}
-{#<html lang="en">#}
-{#<head>#}
-{#    <meta charset="UTF-8">#}
-{#    <title>Nutrition details</title>#}
-{#</head>#}
-{#<body>#}
-{#<ul>#}
-{#  {% for nutrition in nutrition_s %}#}
-{#      <li>{{ nutrition.meal.calories }}</li>#}
-{#      <li>{{ nutrition.meal.protein }}</li>#}
-{#      <li>{{ nutrition.meal.fat }}</li>#}
-{#      <li>{{ nutrition.meal.carbs }}</li>#}
-{#  {% endfor %}#}
-{##}
-{#</ul>#}
-{#</body>#}
-{#</html>#}
 {% extends "base.html" %}
 {% block title %}{{ page_title }}{% endblock %}
 {% block header_scripts %}
@@ -65,11 +47,65 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">blah</button>
-                    <h4 class="modal-title" id="myModalLabel">Add Meal</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title" id="foodModal">Add Meal</h4>
                 </div>
                 <div class="modal-body">
-                    <h3>Lorem ipsum</h3>
+                    <h1>Meal Info</h1>
+
+                    <form class="form-horizontal" role="form" method="post">
+
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="name" name="name"
+                                       placeholder="Name of meal" value="">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="calorie" class="col-sm-2 col-sm-offset-2 control-label">Calorie</label>
+                            <div class="col-sm-4">
+                                <input type="number" class="form-control" id="calorie" name="calorie"
+                                       placeholder="Calorie value">
+                            </div>
+                            <label for="calorie" class="col-sm-2 control-label">per 100g</label>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Protein" class="col-sm-2 col-sm-offset-2 control-label">Protein</label>
+                            <div class="col-sm-4">
+                                <input type="number" class="form-control" id="protein" name="protein"
+                                       placeholder="Protein value">
+                            </div>
+                            <label for="protein" class="col-sm-2 control-label">per 100g</label>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Fat" class="col-sm-2 col-sm-offset-2 control-label">Fat</label>
+                            <div class="col-sm-4">
+                                <input type="number" class="form-control" id="fat" name="fat"
+                                       placeholder="Fat value">
+                            </div>
+                            <label for="fat" class="col-sm-2 control-label">per 100g</label>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Carbs" class="col-sm-2 col-sm-offset-2 control-label">Carbs</label>
+                            <div class="col-sm-4">
+                                <input type="number" class="form-control" id="carbs" name="carbs"
+                                       placeholder="Carbs value">
+                            </div>
+                            <label for="carbs" class="col-sm-2 control-label">per 100g</label>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-10 col-sm-offset-2">
+                                <! Will be used to display an alert to the user>
+                            </div>
+                        </div>
+                    </form>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
