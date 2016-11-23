@@ -62,20 +62,16 @@ function weightScripts() {
         e.preventDefault();
         var date = $('#weight_date').val();
         var weight = $('#weight_value').val();
-        var checkFlag = true;
         if(!date || !weight) {
             alert('Please provide weighting date and value.');
-            checkFlag = false;
+            return false
         }
         if (new Date(date) == 'Invalid Date') {
 	        alert('Wrong date provided.');
-            checkFlag = false;
+            return false
         }
-        if(!isNaN(weight)) {
+        if(isNaN(weight)) {
             alert('Please provide proper weight value (ex.: 100, 99.9)');
-            checkFlag = false;
-        }
-        if(!checkFlag) {
             return false
         }
         $.ajax({
