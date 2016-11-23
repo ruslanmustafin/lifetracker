@@ -2,10 +2,17 @@
 {% block title %}{{ page_title }}{% endblock %}
 {% block header_scripts %}
     <script>
-        var chartData = [{{ mealString|safe }}]
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
-
+{% endblock %}
+{% block footer_scripts %}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+    <script>
+        mealAdd();
+    </script>
 {% endblock %}
 {% block content %}
     <div class="col-sm-12">
@@ -14,7 +21,7 @@
         </h1>
         <div class="row row-centered">
             <div class="col-sm-6 col-sm-offset-3">
-                <table class="table table-bordered table-striped">
+                <table class="table table-bordered table-striped" id="meal_table">
                     <thead>
                     <th>Meal</th>
                     <th>Calories</th>
@@ -34,7 +41,7 @@
     <div class="col-sm-12">
         <div class="col-sm-1 col-sm-offset-11">
             <a href="" class="float" data-toggle="modal"
-               data-target="#basicModal">
+               data-target="#mealModal">
                 <i class="fa fa-plus my-float"></i>
             </a>
             <div class="label-container">
@@ -43,7 +50,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal fade" id="mealModal" tabindex="-1" role="dialog" aria-labelledby="mealModal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -53,7 +60,7 @@
                 <div class="modal-body">
                     <h1>Meal Info</h1>
 
-                    <form class="form-horizontal" role="form" method="post">
+                    <form class="form-horizontal" role="form" method="post" id="form-add-meal">
 
                         <div class="form-group">
                             <label for="name" class="col-sm-2 control-label">Name</label>
@@ -65,38 +72,51 @@
 
                         <div class="form-group">
                             <label for="calorie" class="col-sm-2 col-sm-offset-2 control-label">Calorie</label>
-                            <div class="col-sm-4">
-                                <input type="number" class="form-control" id="calorie" name="calorie"
-                                       placeholder="Calorie value">
+                            <div class="col-sm-6">
+
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="calorie" name="calorie"
+                                           placeholder="Calorie value">
+                                    <div class="input-group-addon">per 100g</div>
+                                </div>
                             </div>
-                            <label for="calorie" class="col-sm-2 control-label">per 100g</label>
                         </div>
 
                         <div class="form-group">
                             <label for="Protein" class="col-sm-2 col-sm-offset-2 control-label">Protein</label>
-                            <div class="col-sm-4">
-                                <input type="number" class="form-control" id="protein" name="protein"
-                                       placeholder="Protein value">
+                            <div class="col-sm-6">
+
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="protein" name="protein"
+                                           placeholder="Protein value">
+                                    <div class="input-group-addon">per 100g</div>
+                                </div>
                             </div>
-                            <label for="protein" class="col-sm-2 control-label">per 100g</label>
                         </div>
 
                         <div class="form-group">
                             <label for="Fat" class="col-sm-2 col-sm-offset-2 control-label">Fat</label>
-                            <div class="col-sm-4">
-                                <input type="number" class="form-control" id="fat" name="fat"
-                                       placeholder="Fat value">
+                            <div class="col-sm-6">
+
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="fat" name="fat"
+                                           placeholder="Fat value">
+
+                                    <div class="input-group-addon">per 100g</div>
+                                </div>
                             </div>
-                            <label for="fat" class="col-sm-2 control-label">per 100g</label>
                         </div>
 
                         <div class="form-group">
                             <label for="Carbs" class="col-sm-2 col-sm-offset-2 control-label">Carbs</label>
-                            <div class="col-sm-4">
-                                <input type="number" class="form-control" id="carbs" name="carbs"
-                                       placeholder="Carbs value">
+                            <div class="col-sm-6">
+
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="carbs" name="carbs"
+                                           placeholder="Carbs value">
+                                    <div class="input-group-addon">per 100g</div>
+                                </div>
                             </div>
-                            <label for="carbs" class="col-sm-2 control-label">per 100g</label>
                         </div>
 
                         <div class="form-group">
@@ -109,7 +129,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="submit" class="btn btn-primary" id="submit-button-add-meal">Save changes</button>
                 </div>
             </div>
         </div>

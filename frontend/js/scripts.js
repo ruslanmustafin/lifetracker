@@ -42,7 +42,7 @@ function weightScripts() {
                 url: '/api/weight/' + weightId + '/',
                 success: function (data) {
                     // remove table row
-                    $row.stop(true,true).fadeOut(function () {
+                    $row.stop(true, true).fadeOut(function () {
                         $dataTable.row($row).remove().draw();
                     });
                     // update graph
@@ -60,5 +60,36 @@ function weightScripts() {
                 }
             });
         });
+    });
+}
+
+function mealAdd() {
+    $("#submit-button-add-meal").on('click', function (event) {
+        event.preventDefault();
+        /* get the action attribute from the <form action=""> element */
+        var $form = $(this),
+            url = $form.attr('role');
+        /* Send the data using post with element id name and name2*/
+        // var posting = $.post(url, {
+        //     name: $('#name').val(),
+        //     type: (0),
+        //     calories: $('#calorie').val(),
+        //     protein: $('#protein').val(),
+        //     fat: $('#fat').val(),
+        //     carbs: $('#carbs').val()
+        // });
+        $.ajax({
+            headers: {"X-CSRFToken": $.cookie('csrftoken')},
+            type: "POST",
+            url: '/nutrition/',
+            data: ''
+        })
+            .done(function (data) {
+                alert('success');
+            });
+
+        $('#mealModal').modal('hide');
+        return false;
+
     });
 }
