@@ -43,7 +43,6 @@ urlpatterns = [
     url(r'^$', polls_views.main),
     url(r'^test_graph/', polls_views.test_graph),
     url(r'^api/', include(router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^weight/$', polls_views.weight),
     url(r'^nutrition/$', polls_views.meal_list),
     url(r'^nutrition/details/(?P<id>\w{0,50})/$', polls_views.meal_by_id),
@@ -51,4 +50,6 @@ urlpatterns = [
     url(r'^api/photo/$', rest_views.PhotoList.as_view(), name='myphoto-list'),
     url(r'^api/meals/$', rest_views.MealsList.as_view(), name='meals-list'),
     url(r'^api/exercises/$', rest_views.ExerciseList.as_view(), name='meals-list'),
+    url(r'^api/weight/$', rest_views.WeightView.as_view(), name='weight-list'),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

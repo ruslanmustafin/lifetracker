@@ -14,7 +14,7 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
         model = Group
         fields = ('url', 'name')
 
-class WeightSerializer(serializers.HyperlinkedModelSerializer):
+class WeightSerializer(serializers.ModelSerializer):
     class Meta:
         model = Weight
         fields = ('weight_id', 'user', 'weight_date_time', 'value')
