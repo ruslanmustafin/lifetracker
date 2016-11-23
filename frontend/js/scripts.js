@@ -58,7 +58,7 @@ function weightScripts() {
             });
         });
     });
-    $('#add_weight_btn').on('click',function(e){
+    $('#add_weight_btn').on('click', function (e) {
         e.preventDefault();
         var date = $('#weight_date').val();
         var weight = $('#weight_value').val();
@@ -80,7 +80,7 @@ function weightScripts() {
             url: '/api/weight/',
             data: {
                 value: weight,
-                weight_date_time: date+'T00:00:00+00:00'
+                weight_date_time: date + 'T00:00:00+00:00'
             }
         })
     })
@@ -90,21 +90,16 @@ function mealAdd() {
     $("#submit-button-add-meal").on('click', function (event) {
         event.preventDefault();
         /* get the action attribute from the <form action=""> element */
-        var $form = $(this),
-            url = $form.attr('role');
-        /* Send the data using post with element id name and name2*/
-        // var posting = $.post(url, {
-        //     name: $('#name').val(),
-        //     type: (0),
-        //     calories: $('#calorie').val(),
-        //     protein: $('#protein').val(),
-        //     fat: $('#fat').val(),
-        //     carbs: $('#carbs').val()
-        // });
+        var name = $('#name').val();
+        var type = (0);
+        var calories = $('#calorie').val();
+        var protein = $('#protein').val();
+        var fat = $('#fat').val();
+        var carbs = $('#carbs').val();
         $.ajax({
             headers: {"X-CSRFToken": $.cookie('csrftoken')},
             type: "POST",
-            url: '/nutrition/',
+            url: '/api/meals/',
             data: ''
         })
             .done(function (data) {
