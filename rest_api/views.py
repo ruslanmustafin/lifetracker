@@ -7,6 +7,7 @@ from rest_api.serializers import *
 from polls.models import *
 from rest_framework import generics
 from django.utils.dateformat import format
+from rest_framework.decorators import detail_route, list_route
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -57,6 +58,12 @@ class WeightSelfViewSet(viewsets.ModelViewSet):
 
         return queryset
 
+    @list_route(methods=['post'])
+    def save_weight(self, request):
+        user = self.request.user
+
+        print user
+
 
     def filter_date(queryset, date, greater=True):
         filtered_queryset = []
@@ -66,6 +73,42 @@ class WeightSelfViewSet(viewsets.ModelViewSet):
                 filtered_queryset.append(obj)
             elif not greater and unix_time < date:
                 filtered_queryset.append(obj)
+
+
+class WeightView(APIView):
+    def get(self, request, format=None):
+        user = self.request.user
+        queryset = Weight.objects.filter(user=user)
+        
+
+
+        date_from = self.request.query_params.get('from', None)
+        date_to = self.request.query_params.get('to', None)
+
+        if date_from:
+            date_from_unix = format(date_from, 'U')
+            queryset = filter_date(queryset, date_from_unix)
+
+        if date_to:
+            date_to_unix = format(date_from, 'U')
+            queryset = filter_date(queryset, date_to_unix, False)        
+
+        serializer = WeightSerializer(queryset, many=True)
+
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request, format=None):
+        user = self.request.user
+        print user
+        request.data['user'] = user.id
+        print request.data
+        serializer = WeightSerializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 # class ExerciseSelfViewSet(viewsets.ModelViewSet):
 #     serializer_class = ExerciseLinkSerializer
