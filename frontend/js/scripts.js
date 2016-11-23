@@ -7,31 +7,32 @@ $().ready(function () {
 function weightScripts() {
     $().ready(function () {
         $('#weight-table').on('click', '.remove-weight-btn', function (e) {
-            var weightId = $(this).data('weightId');
             e.preventDefault();
-            //$(this).parent('td').fadeOut().remove();
-            for (var i = 0; i < chartData.length; i++) {
-                if (chartData[i][0] == weightId) {
-                    console.log(chartData[i]);
-                    chartData.splice(i, 1);
-                    graphData.labels.splice(i, 1);
-                    graphData.weightData.splice(i, 1);
-                    myChart.update();
-                    break;
-                }
-            }
-
-            //console.log(data);
-            /*$.ajax({
-                headers: {"X-CSRFToken": "LqiD1lJ3PJy3V1zAo0jFUPfipon8EaxQNh1OGTnO9Wyvl57Lam3hEYNiNrigIGeE"},
+            // weigh tmodel id
+            var weightId = $(this).data('weightId');
+            $.ajax({
+                // REST interaction
+                headers: {"X-CSRFToken": $.cookie('csrftoken')},
                 type: "DELETE",
                 //dataType: "jsonp",
                 url: '/api/weight/' + weightId + '/',
                 success: function (data) {
+                    // remove table row
                     $(this).parent('td').fadeOut().remove();
+                    // update graph
+                    for (var i = 0; i < chartData.length; i++) {
+                        if (chartData[i][0] == weightId) {
+                            console.log(chartData[i]);
+                            chartData.splice(i, 1);
+                            graphData.labels.splice(i, 1);
+                            graphData.weightData.splice(i, 1);
+                            myChart.update();
+                            break;
+                        }
+                    }
                     console.log(data);
                 }
-            });*/
+            });
         });
         diff = 0;
         weightBuff = chartData[0][2];
@@ -45,9 +46,9 @@ function weightScripts() {
 
         $('#weight_table').DataTable({
             "sDom": '<"row view-filter"<"col-sm-12"<"pull-left"l><"pull-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-            searching   :   false,
-            lengthChange :  false,
-            info        :   false
+            searching: false,
+            lengthChange: false,
+            info: false
         });
     });
 }
